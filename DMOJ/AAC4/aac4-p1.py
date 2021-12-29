@@ -5,15 +5,14 @@ def main():
     input = sys.stdin.readline
     print = sys.stdout.writelines
 
-    length, zeros = map(int, input().split())  # Unused data
+    length, zeros = map(int, input().split())
     string = input()[:-1]
-    cheers = input().split()
+    cheers = list(map(int, input().split()))
 
-    maxCheerZeroIdx = length - [i for i, x in enumerate(string[::-1]) if x == '0'][cheers[::-1].index(max(cheers[::-1]))]
+    maxCheerZeroIdx = [i for i, x in enumerate(string) if x == "0"][(zeros - 1) - cheers[::-1].index(max(cheers))]
 
     print([x for x in string[maxCheerZeroIdx:] + string[:maxCheerZeroIdx] if x != '0'])
     print('\n')
 
 
 main()
-s = str.split
