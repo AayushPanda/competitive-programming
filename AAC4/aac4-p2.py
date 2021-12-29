@@ -1,10 +1,11 @@
 import sys
+input = sys.stdin.readline
 
 def main():
     input = sys.stdin.readline
 
     n, q = map(int, input().split(' '))
-    lights = map(int, input().split(' '))
+    lights = list(map(int, input().split(' ')))
 
     for x in range(q):
         t = int(input())

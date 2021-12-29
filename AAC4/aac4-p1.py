@@ -1,42 +1,19 @@
-def sendToBack(arr):
-    arr.append(arr[0])
-    del (arr[0])
-    return arr
+import sys
 
 
 def main():
-    length, zeros = map(int, input().split(' '))
-    string = input()
-    chars = []
+    input = sys.stdin.readline
+    print = sys.stdout.writelines
 
-    cheers = input().split(' ')
+    length, zeros = map(int, input().split())  # Unused data
+    string = input()[:-1]
+    cheers = input().split()
 
-    nzero = 0
+    maxCheerZeroIdx = length - [i for i, x in enumerate(string[::-1]) if x == '0'][cheers[::-1].index(max(cheers[::-1]))]
 
-    for char in string:
-        if char == "0":
-            chars.append(int(cheers[nzero]))
-            nzero += 1
-        else:
-            chars.append(char)
-
-    while zeros > 0:
-        if type(chars[0]) == int:
-            if chars[0] == 0:
-                del (chars[0])
-                zeros -= 1
-            else:
-                chars[0] = chars[0] - 1
-                if chars[0] == 0:
-                    del (chars[0])
-                    zeros -= 1
-                else:
-                    chars = sendToBack(chars)
-        else:
-            intindex = [type(a) == int for a in chars].index(True)
-            chars = chars[intindex:] + chars[0:intindex]
-
-    print("".join(chars))
+    print([x for x in string[maxCheerZeroIdx:] + string[:maxCheerZeroIdx] if x != '0'])
+    print('\n')
 
 
 main()
+s = str.split
