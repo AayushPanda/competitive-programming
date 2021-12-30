@@ -1,0 +1,1 @@
+for x in range(int(input())): print(str(sum([int(x.strip('0')[::-1]) for x in input().split()])).strip('0')[::-1])

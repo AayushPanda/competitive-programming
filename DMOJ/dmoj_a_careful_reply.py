@@ -1,0 +1,1 @@
+[print(x, end='\n') for x in [('<3 '*x)+'<3' for x in [input().count('<3') for x in range(int(input()))]]]
