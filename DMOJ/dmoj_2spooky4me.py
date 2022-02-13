@@ -18,3 +18,8 @@ def main():
 
     print(sum([x<NLS[2] for x in locations]))
 main()
+
+
+
+look at gaps between the rght most and the left msot for the boundaries of the decorations
+    
