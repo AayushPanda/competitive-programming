@@ -1,29 +1,28 @@
 import sys
-from collections import Counter
+from math import ceil
+from itertools import repeat
 
 def main():
     input = sys.stdin.readline
-    #print = sys.stdout.writelines
+    print = sys.stdout.writelines
 
-    n, q = [int(x) for x in input().split()]
+    n, q = map(int, input().split())
 
-    a = dict(Counter([float(x) for x in input().split()]))
+    a = [0] * (int(1e5) + 2)
+    for i in input().split():
+        a[int(i)] += 1
 
-    for _ in range(q):
-        t, n = [int(x) for x in input().split()]
-        n = float(n)
+    for _ in repeat(None, q):
+        t, n = map(int, input().split())
 
         if t == 1:
-            s = n/2
-            q = a[n] * 2
-            del a[n]
+            c = a[n]
+            a[n] = 0
 
-            try:
-                a[s] += q
-            except:
-                a[s] = q
+            for s in [ceil(n/2), n//2]:
+                a[s] += c
 
         else:
-            print(a[n])
+            print(str(a[n]) + '\n')
 
 main()
