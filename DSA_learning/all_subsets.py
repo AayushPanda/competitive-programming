@@ -1,11 +1,11 @@
-a = [x for x in range(10)]
+a = [x for x in range(3)]
 
 # using bit representation of integers
 b = ""
 for _ in range(len(a)):
     b += '1'
 
-n = int(b, 2)
+n = int(b, 2)+1
 
 for x in range(n):
     bitrep = f'{x:b}'
@@ -14,6 +14,6 @@ for x in range(n):
 
     for i in range(len(bitrep)):
         if bitrep[i] == '1':
-            subset += a[i]
+            subset.append(a[i])
 
     print(subset)
