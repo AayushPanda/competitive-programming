@@ -1,21 +1,35 @@
+'''
+Aayush Panda
+'''
+
+import sys
+from itertools import repeat
+
+def sortXbyY(X,Y):
+    return [(y,x) for y,x in sorted(zip(Y,X))]
+
 def main():
-    import sys
     input = sys.stdin.readline
+    print = sys.stdout.writelines
+    println = lambda x: print(x + '\n')
+    loop = lambda x: repeat(None, x)
 
-    NLS = list(map(int, input().split()))
-    sectors = []
+    maxn = int(1e5) + 2
+    N,L,S = map(int, input().split())
 
-    for x in range(NLS[0]):
-        sectors.append(list(map(int, input().split())))
+    houses = [(L+1, 0)]
+    for _ in loop(N):
+        a,b,s = map(int, input().split())
+        houses.append((a,s))
+        houses.append((b+1,-s))
+    houses.sort()
 
-    locations = []
+    spook = 0
+    for i in range(len(houses)-1):
+        spook += houses[i][1]
+        if spook >= S:
+            L -= houses[i+1][0] - houses[i][0]
 
-    for x in range(1,NLS[1]):
-        locations.append(0)
-        for sector in sectors:
-            if sector[0] <= x <= sector[1]:
-                locations[x-1] += sector[2]
+    println(str(L))
 
-    print(sum([x<NLS[2] for x in locations]))
 main()
-
